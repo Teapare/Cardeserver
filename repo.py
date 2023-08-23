@@ -34,6 +34,9 @@ class Repository:
         self.serializer = JSONSerializer()
         self.deserializer = JSONDeserializer()
 
+    async def get_latest_root(self, request: aiohttp.web.Request):
+        return aiohttp.web.Response(text=str(self.roles['root'].signed.version))
+
     async def load_new_version(self, request: aiohttp.web.Request):
         for file in os.listdir(TARGETS_PATH):
             os.remove(TARGETS_PATH / file)
