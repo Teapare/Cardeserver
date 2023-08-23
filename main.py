@@ -5,10 +5,6 @@ import asyncio
 from settings import METADATA_PATH, TARGETS_PATH, REPOSITORY_PATH
 
 
-async def scream(request):
-    return web.Response(text="AAAAAA")
-
-
 def ensure_dirs_exist():
     if not os.path.exists(REPOSITORY_PATH):
         os.mkdir(REPOSITORY_PATH)
@@ -28,6 +24,7 @@ if __name__ == '__main__':
 
     repo_controller = web.Application()
     repo_controller.add_routes([web.post('/', repo.load_new_version)])
+    repo_controller.add_routes([web.get('/', repo.get_latest_root)])
 
     loop = asyncio.new_event_loop()
     loop.create_task(web._run_app(repo_controller, host='192.168.0.184', port=6006))
