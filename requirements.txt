@@ -1,0 +1,5 @@
+aiohttp~=3.8.5
+securesystemslib~=0.28.0
+tuf~=3.0.0
+requests~=2.31.0
+SQLAlchemy~=2.0.20
